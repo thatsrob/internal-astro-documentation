@@ -2,7 +2,25 @@
 
 This guide explains every page layout in `src/layouts/templates/`: what each one is for, which props it accepts, how content gets into it, and how to pick the right template for a new page.
 
-For local setup and editing workflows, see [DEVELOPMENT.md](./DEVELOPMENT.md). For the big picture, see [SITE-OVERVIEW.md](./SITE-OVERVIEW.md). For step-by-step content authoring, see [CONTENT-GUIDE.md](./CONTENT-GUIDE.md).
+For local setup and editing workflows, see [DEVELOPMENT.md](./DEVELOPMENT.md). For the big picture, see [SITE-OVERVIEW.md](./SITE-OVERVIEW.md). For step-by-step content authoring, see [CONTENT-GUIDE.md](./CONTENT-GUIDE.md). For migration tracker counts and standalone page mapping, see [PAGE-INVENTORY.md](./PAGE-INVENTORY.md). Post-migration editing tasks: [TODO.md](./TODO.md).
+
+---
+
+## Template catalog (migration tracker)
+
+| Template | Page type | Est. pages | Layout pattern |
+|----------|-----------|------------|----------------|
+| `BlogPostTemplate` | Blog articles | ~132 (sheet) / ~160 (repo) | Hero + 2-col article + sidebar (CTA + chapter TOC) |
+| `CityTemplate` | City / location SEO | ~118 | Localized hero + service content |
+| `PodcastTemplate` | Podcast episodes | ~22 | Episode hero + embed + show notes + platform CTAs |
+| `ServiceTemplate` | Service lines | ~18 manifest / 6 in repo | Service hero + features + CTA sections |
+| `PracticeAreaTemplate` | Practice areas | ~9 (sheet) / ~12 (repo) | Practice hero + long-form content |
+| `CaseStudyNarrativeTemplate` | Case studies | ~29 (sheet) / ~27 (repo) | Hero + narrative results story |
+| `CoreTemplate` | Core / hubs | ~6+ | Hero + credibility badge bar + slot |
+| `HomepageTemplate` | Homepage | 1 (+ v2, v3) | Full homepage sections |
+| `BookACallTemplate` | Book a call | 1 | Focused CTA layout (production uses custom `book-call.astro`) |
+| `GuidesTemplate` | Pillar guides | Few | Chapter nav + long-form slot |
+| `AgencyReviewTemplate` | Agency reviews | ~11 | Review-style article shell |
 
 ---
 

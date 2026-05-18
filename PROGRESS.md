@@ -6,6 +6,8 @@
 | Resource | Link |
 |----------|------|
 | **Migration tracker (source of targets)** | [Google Sheet](https://docs.google.com/spreadsheets/d/13jFsEzuXJp5MbTvwvQ1JmuTFIeLlGJ3zLXCSAUlMf4A/edit?usp=sharing) |
+| **Page inventory (templates + standalone)** | [PAGE-INVENTORY.md](./PAGE-INVENTORY.md) |
+| **Post-migration to-do** | [TODO.md](./TODO.md) |
 | **Staging** | [staging.goconstellation.com](https://staging.goconstellation.com) |
 | **Repo** | [github.com/ConstellationMarketing/con-staging](https://github.com/ConstellationMarketing/con-staging) |
 | **Production (live today)** | [goconstellation.com](https://www.goconstellation.com) — WordPress/Divi |
@@ -198,9 +200,11 @@ Launch-ready (holistic)      ████████████░░░░░
 
 ## Recommended next actions (priority order)
 
-1. **Reconcile the Google Sheet** with the repo audit table in this doc (especially blog 115 remaining vs ~160 files, city 117 vs ~121).
-2. **Close the service-page gap** — list manifest URLs missing from repo; build or custom-page the rest.
-3. **Phase 4 pass** — homepage + book-call + 5–10 highest-traffic URLs; fix empty podcast embeds and `wp-content` image dependencies.
+See **[TODO.md](./TODO.md)** for the full checklist (specific pages, bulk categories, and launch phases).
+
+1. **Reconcile the Google Sheet** with [PAGE-INVENTORY.md](./PAGE-INVENTORY.md) (especially blog, city, service tabs).
+2. **Close the service-page gap** — export Service Pages tab; build or redirect missing URLs.
+3. **Phase 4 pass** — homepage + book-call + flagship services; fix empty podcast embeds and `wp-content` hotlinks.
 4. **Open technical items** — GTM in `BaseLayout`, `CoreTemplate` title fix, PurgeCSS / CSS strategy, `/examples` noindex.
 5. **Phase 5 prep** — [LAUNCH-CHECKLIST.md](./LAUNCH-CHECKLIST.md) owners for DNS, GHL, ClickUp, Search Console.
 

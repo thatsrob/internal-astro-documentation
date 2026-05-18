@@ -45,7 +45,7 @@ Phase 4  QA & polish           [███████░░░░░░░░░
 Phase 5  DNS / launch         [░░░░░░░░░░░░░░░░░░░░░░░░]   0%
 ```
 
-See [PROGRESS.md](./PROGRESS.md) · [PROGRESS-PERCENTAGE.md](./PROGRESS-PERCENTAGE.md) · [QA-PROCEDURES.md](./QA-PROCEDURES.md).
+See [PROGRESS.md](./PROGRESS.md) · [PAGE-INVENTORY.md](./PAGE-INVENTORY.md) · [TODO.md](./TODO.md) · [PROGRESS-PERCENTAGE.md](./PROGRESS-PERCENTAGE.md) · [QA-PROCEDURES.md](./QA-PROCEDURES.md).
 
 ---
 

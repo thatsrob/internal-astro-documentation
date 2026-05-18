@@ -344,6 +344,8 @@ Use this table to go deeper. You do not need every doc immediately.
 
 | Document | Read when you need to… |
 |----------|-------------------------|
+| [PAGE-INVENTORY.md](./PAGE-INVENTORY.md) | Migration tracker templates, standalone pages, category scale |
+| [TODO.md](./TODO.md) | Post-migration editing, QA, and launch next steps |
 | [ASTRO.md](./ASTRO.md) | Astro basics, static output, page/template stack |
 | [DEVELOPMENT.md](./DEVELOPMENT.md) | Day-to-day commands, editing workflows, troubleshooting |
 | [TEMPLATES.md](./TEMPLATES.md) | Props, slots, which template to pick |

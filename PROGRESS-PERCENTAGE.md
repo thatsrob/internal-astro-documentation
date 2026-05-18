@@ -3,7 +3,7 @@
 **Last updated:** 2026-05-18  
 **Purpose:** Percent-complete view by category, what remains for **100% deployment readiness**, and estimated timeline.
 
-**Related:** [PROGRESS.md](./PROGRESS.md) · [QA-BREAKDOWN.md](./QA-BREAKDOWN.md) · [LAUNCH-CHECKLIST.md](./LAUNCH-CHECKLIST.md) · [Migration tracker (Google Sheet)](https://docs.google.com/spreadsheets/d/13jFsEzuXJp5MbTvwvQ1JmuTFIeLlGJ3zLXCSAUlMf4A/edit?usp=sharing)
+**Related:** [PROGRESS.md](./PROGRESS.md) · [PAGE-INVENTORY.md](./PAGE-INVENTORY.md) · [TODO.md](./TODO.md) · [QA-BREAKDOWN.md](./QA-BREAKDOWN.md) · [LAUNCH-CHECKLIST.md](./LAUNCH-CHECKLIST.md) · [Migration tracker (Google Sheet)](https://docs.google.com/spreadsheets/d/13jFsEzuXJp5MbTvwvQ1JmuTFIeLlGJ3zLXCSAUlMf4A/edit?usp=sharing)
 
 ---
 

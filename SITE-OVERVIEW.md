@@ -127,18 +127,22 @@ import HomepageTemplate from '../layouts/templates/HomepageTemplate.astro';
 
 ## Page types and templates
 
-| Template | Purpose |
-|----------|---------|
-| `HomepageTemplate` (+ v2, v3) | Homepage and migration variants |
-| `CityTemplate` | Geo landing pages (e.g. Austin, Denver) |
-| `BlogPostTemplate` | Blog articles |
-| `PracticeAreaTemplate` | Long-form practice-area guides |
-| `CoreTemplate` | Generic marketing pages |
-| `ServiceTemplate` | Service line pages (SEO, PPC, web design) |
-| `CaseStudyNarrativeTemplate` | Client success stories |
-| `PodcastTemplate` | Podcast episodes |
-| `BookACallTemplate` | Consultation landing |
-| `GuidesTemplate` / `AgencyReviewTemplate` | Guides and agency reviews |
+Full inventory with layout patterns, standalone pages, and sheet vs repo counts: **[PAGE-INVENTORY.md](./PAGE-INVENTORY.md)**. Post-migration work: **[TODO.md](./TODO.md)**.
+
+| Template | Purpose | Scale (approx.) |
+|----------|---------|-----------------|
+| `HomepageTemplate` (+ v2, v3) | Homepage and migration variants | 1 live |
+| `CityTemplate` | Geo landing pages (e.g. Atlanta, Austin) | ~118–121 |
+| `BlogPostTemplate` | Blog articles | ~132 (sheet) / ~160 (repo) |
+| `PracticeAreaTemplate` | Long-form practice-area guides | ~9–12 |
+| `CoreTemplate` | About, FAQ, blog/podcast index, legal | ~6+ |
+| `ServiceTemplate` | Service line pages (SEO, PPC, branding, etc.) | ~6 built / ~18 manifest |
+| `CaseStudyNarrativeTemplate` | Client success stories | ~27–29 |
+| `PodcastTemplate` | Podcast episodes | ~22–23 |
+| `BookACallTemplate` | Consultation landing (template); live `/book-call/` is custom | 1 |
+| `GuidesTemplate` / `AgencyReviewTemplate` | Pillar guides and agency reviews | Few |
+
+**Standalone pages** (not bulk-generated): `index`, `about-us`, `blog/index`, `podcasts/index`, `case-studies`, `services`, `book-call`, `faq`, plus three custom flagship service pages (`law-firm-seo-services`, `law-firm-ppc`, `law-firm-web-design`). See [PAGE-INVENTORY.md](./PAGE-INVENTORY.md#standalone-pages).
 
 Shared layout:
 
@@ -217,6 +221,8 @@ Key docs and tools:
 
 | Document | Purpose |
 |----------|---------|
+| [TODO.md](./TODO.md) | **Post-migration**: pages to edit, QA, launch phases |
+| [PAGE-INVENTORY.md](./PAGE-INVENTORY.md) | Migration tracker templates, standalone pages, counts |
 | [COMPREHENSIVE-OVERVIEW.md](./COMPREHENSIVE-OVERVIEW.md) | **Start here**: narrative onboarding for new developers |
 | [ASTRO.md](./ASTRO.md) | Astro concepts and how they apply on this site |
 | [SITE-OVERVIEW.md](./SITE-OVERVIEW.md) | Architecture and stack (this file) |

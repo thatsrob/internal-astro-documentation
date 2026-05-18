@@ -8,6 +8,8 @@ How the internal docs relate to each other and to the codebase.
 flowchart TD
     START["New developer"]
     START --> CO["COMPREHENSIVE-OVERVIEW.md<br/>Start here"]
+    CO --> INV["PAGE-INVENTORY.md<br/>Tracker templates & pages"]
+    CO --> TODO["TODO.md<br/>Post-migration checklist"]
     CO --> ASTRO["ASTRO.md<br/>Framework on this site"]
     CO --> DEV["DEVELOPMENT.md<br/>Commands & workflow"]
     

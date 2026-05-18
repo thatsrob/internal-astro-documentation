@@ -11,6 +11,8 @@
 | [VISUAL-QA.md](./VISUAL-QA.md) | BackstopJS commands and homepage section mapping |
 | [PROGRESS-PERCENTAGE.md](./PROGRESS-PERCENTAGE.md) | Percent complete by category |
 | [LAUNCH-CHECKLIST.md](./LAUNCH-CHECKLIST.md) | Cutover after Phase 4 sign-off |
+| [TODO.md](./TODO.md) | Page-level editing and phased checklist |
+| [PAGE-INVENTORY.md](./PAGE-INVENTORY.md) | Tracker templates and standalone page map |
 
 ---
 
