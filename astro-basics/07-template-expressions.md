@@ -247,13 +247,6 @@ const formatted = publishDate
 
 ---
 
-## Series complete
+## Next
 
-You now have the vocabulary to read any `.astro` file in the Constellation repo.
-
-| Next step | Document |
-|-----------|----------|
-| How Astro applies to our site | [ASTRO.md](../ASTRO.md) |
-| Run and edit locally | [DEVELOPMENT.md](../DEVELOPMENT.md) |
-| Pick a page template | [TEMPLATES.md](../TEMPLATES.md) |
-| Migrate one URL | [INDIVIDUAL-PAGE-MIGRATION.md](../INDIVIDUAL-PAGE-MIGRATION.md) |
+[8. Assets, images, and styles →](./08-assets-images-and-styles.md)

@@ -292,6 +292,8 @@ Sitewide analytics (GTM) is **not** in `BaseLayout` yet; production WordPress st
 
 Images and legacy CSS are referenced with root-relative paths: `/images/hero.webp`.
 
+Framework primer: [astro-basics/08-assets-images-and-styles.md](./astro-basics/08-assets-images-and-styles.md).
+
 ---
 
 ## Benefits of Astro for this project
@@ -401,7 +403,7 @@ Some pages inject icon markup from string variables with `set:html={p.icon}`. Us
 
 | Topic | Document |
 |-------|----------|
-| Astro fundamentals (framework primer) | [astro-basics/](./astro-basics/README.md) |
+| Astro fundamentals (8-part primer) | [astro-basics/](./astro-basics/README.md) |
 | Commands and editing workflow | [DEVELOPMENT.md](./DEVELOPMENT.md) |
 | Template props and picker | [TEMPLATES.md](./TEMPLATES.md) |
 | Canonicals and redirects | [SEO.md](./SEO.md) |

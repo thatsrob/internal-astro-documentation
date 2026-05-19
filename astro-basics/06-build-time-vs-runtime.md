@@ -143,4 +143,4 @@ No database, no PHP, no per-request app server in our static setup.
 
 ## Next
 
-[7. Template expressions →](./07-template-expressions.md)
+[7. Template expressions →](./07-template-expressions.md) · [8. Assets, images, and styles →](./08-assets-images-and-styles.md)

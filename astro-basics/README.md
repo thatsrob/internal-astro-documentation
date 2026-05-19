@@ -27,6 +27,7 @@ A short, framework-focused guide to **Astro** for Constellation Marketing staff 
 | 5 | [Routing and pages](./05-routing-and-pages.md) | File-based URLs, dynamic routes, `index` files |
 | 6 | [Build time vs runtime](./06-build-time-vs-runtime.md) | When code runs, static vs server output |
 | 7 | [Template expressions](./07-template-expressions.md) | `{expressions}`, conditionals, lists, `class` |
+| 8 | [Assets, images, and styles](./08-assets-images-and-styles.md) | `public/` vs `src/`, CSS patterns, images |
 
 ---
 
@@ -46,4 +47,5 @@ A short, framework-focused guide to **Astro** for Constellation Marketing staff 
 | Day-to-day commands | [DEVELOPMENT.md](../DEVELOPMENT.md) |
 | Page templates in this repo | [TEMPLATES.md](../TEMPLATES.md) |
 | New developer onboarding | [COMPREHENSIVE-OVERVIEW.md](../COMPREHENSIVE-OVERVIEW.md) |
+| Images and WordPress cleanup | [IMAGE-MIGRATION.md](../IMAGE-MIGRATION.md) |
 | Full doc index | [graphs/documentation-map.md](../graphs/documentation-map.md) |
