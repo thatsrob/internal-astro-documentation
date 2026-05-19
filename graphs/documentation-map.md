@@ -10,9 +10,11 @@ flowchart TD
     START --> CO["COMPREHENSIVE-OVERVIEW.md<br/>Start here"]
     CO --> INV["PAGE-INVENTORY.md<br/>Tracker templates & pages"]
     CO --> TODO["TODO.md<br/>Post-migration checklist"]
+    CO --> BASICS["astro-basics/<br/>Framework primer"]
     CO --> ASTRO["ASTRO.md<br/>Framework on this site"]
     CO --> DEV["DEVELOPMENT.md<br/>Commands & workflow"]
     
+    BASICS --> ASTRO
     ASTRO --> TEMPLATES["TEMPLATES.md"]
     DEV --> CONTENT["CONTENT-GUIDE.md"]
     
@@ -35,6 +37,7 @@ flowchart TD
 ```mermaid
 flowchart LR
     subgraph DOCS["documents/"]
+        D0["astro-basics/"]
         D1["ASTRO.md"]
         D2["TEMPLATES.md"]
         D3["STYLING.md"]
@@ -56,6 +59,7 @@ flowchart LR
         C8["robots.txt · DNS cutover"]
     end
 
+    D0 --> C1
     D1 --> C1
     D2 --> C2
     D3 --> C3

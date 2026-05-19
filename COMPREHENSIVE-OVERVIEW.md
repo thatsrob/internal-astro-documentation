@@ -346,7 +346,8 @@ Use this table to go deeper. You do not need every doc immediately.
 |----------|-------------------------|
 | [PAGE-INVENTORY.md](./PAGE-INVENTORY.md) | Migration tracker templates, standalone pages, category scale |
 | [TODO.md](./TODO.md) | Post-migration editing, QA, and launch next steps |
-| [ASTRO.md](./ASTRO.md) | Astro basics, static output, page/template stack |
+| [astro-basics/](./astro-basics/README.md) | Framework primer (`.astro` syntax, components, routing) |
+| [ASTRO.md](./ASTRO.md) | Astro on this site: static output, page/template stack |
 | [DEVELOPMENT.md](./DEVELOPMENT.md) | Day-to-day commands, editing workflows, troubleshooting |
 | [TEMPLATES.md](./TEMPLATES.md) | Props, slots, which template to pick |
 | [CONTENT-GUIDE.md](./CONTENT-GUIDE.md) | Add or edit blog posts, city pages, images |

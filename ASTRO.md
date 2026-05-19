@@ -1,6 +1,10 @@
 # Astro on This Site
 
-This document explains **what Astro is**, **how this project uses it**, and **why that choice fits** a large marketing site migrating off WordPress. For day-to-day commands, see [DEVELOPMENT.md](./DEVELOPMENT.md). For the full project picture, see [COMPREHENSIVE-OVERVIEW.md](./COMPREHENSIVE-OVERVIEW.md).
+This document explains **what Astro is**, **how this project uses it**, and **why that choice fits** a large marketing site migrating off WordPress.
+
+**New to Astro?** Start with the framework primer in [astro-basics/](./astro-basics/README.md) (language concepts, components, routing, build time). Return here for Constellation-specific configuration and patterns.
+
+For day-to-day commands, see [DEVELOPMENT.md](./DEVELOPMENT.md). For the full project picture, see [COMPREHENSIVE-OVERVIEW.md](./COMPREHENSIVE-OVERVIEW.md).
 
 ---
 
@@ -397,6 +401,7 @@ Some pages inject icon markup from string variables with `set:html={p.icon}`. Us
 
 | Topic | Document |
 |-------|----------|
+| Astro fundamentals (framework primer) | [astro-basics/](./astro-basics/README.md) |
 | Commands and editing workflow | [DEVELOPMENT.md](./DEVELOPMENT.md) |
 | Template props and picker | [TEMPLATES.md](./TEMPLATES.md) |
 | Canonicals and redirects | [SEO.md](./SEO.md) |
