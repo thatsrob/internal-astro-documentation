@@ -139,7 +139,7 @@ Ask: **“Did this code run at build time or in the browser?”**
 
 Never put API keys in client `<script>` or in HTML comments.
 
-In Astro, only variables prefixed with `PUBLIC_` are exposed to the browser via `import.meta.env.PUBLIC_*`. Everything else is build-time only. See [ENVIRONMENT-AND-SECRETS.md](../ENVIRONMENT-AND-SECRETS.md) for this repo.
+In Astro, only variables prefixed with `PUBLIC_` are exposed to the browser via `import.meta.env.PUBLIC_*`. Everything else is build-time only. For this repo: local `.env` and `ANTHROPIC_API_KEY` in [DEVELOPMENT.md](../DEVELOPMENT.md); deploy token and staging auth in [DEPLOYMENT.md](../DEPLOYMENT.md) and [INTEGRATIONS.md](../INTEGRATIONS.md).
 
 ### `import.meta.env` (common flags)
 
