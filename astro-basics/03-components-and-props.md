@@ -18,6 +18,24 @@ import SiteHeader from '../components/SiteHeader.astro';
 - Use the **default export** pattern: `import Name from './Name.astro'`.
 - Tag name matches the import name (PascalCase convention).
 - Paths are relative to the current file unless you configure aliases in `tsconfig.json`.
+- **Depth matters:** from `src/pages/blog/post.astro` to `src/layouts/BaseLayout.astro` is `../../layouts/BaseLayout.astro`. After moving a file, fix imports before chasing CSS bugs.
+
+### Path aliases (optional)
+
+Many projects define shortcuts in `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"]
+    }
+  }
+}
+```
+
+Then: `import SiteHeader from '@components/SiteHeader.astro';`. Constellation mostly uses relative paths; both are valid.
 
 ---
 
@@ -47,6 +65,31 @@ const { activePath = '/', showCta = false } = Astro.props;
 | React `props.children` | **Default slot** (content between tags) |
 | React prop types | TypeScript `interface Props` (optional but recommended) |
 
+### Strings vs expressions
+
+| Syntax | Passed value |
+|--------|----------------|
+| `title="Hello"` | String `"Hello"` |
+| `count={42}` | Number `42` |
+| `items={['a','b']}` | Array (JavaScript value) |
+| `enabled` | Boolean `true` (shorthand for `enabled={true}`) |
+
+Use **curly braces** whenever the value is not a literal string.
+
+### Arrays and objects (common on our templates)
+
+```astro
+<BlogPostTemplate
+  seoTitle="Law firm SEO guide"
+  chapters={[
+    { id: 'intro', label: 'Introduction' },
+    { id: 'local', label: 'Local SEO' },
+  ]}
+/>
+```
+
+The template receives `chapters` as a real array in frontmatter—`.map()` over it in the template section the same way you would in a page file.
+
 ---
 
 ## TypeScript props (recommended)
@@ -67,6 +110,20 @@ const { title, description = '', count = 0 } = Astro.props;
 - Types are checked at build time; they do not ship to the browser.
 
 On the Constellation site, templates in `src/layouts/templates/` define `Props` interfaces for `seoTitle`, `canonicalUrl`, chapter lists, etc. Pages must pass the names each template expects.
+
+### Prop renaming between layers
+
+A common pattern here: the **page** passes `seoTitle`, the **template** maps it to `title` for `BaseLayout`:
+
+```astro
+---
+// BlogPostTemplate.astro — excerpt
+const { seoTitle, canonicalUrl } = Astro.props;
+---
+<BaseLayout title={seoTitle} canonicalUrl={canonicalUrl}>
+```
+
+If the browser tab title is wrong, walk the chain: page attribute → template destructuring → `BaseLayout` prop name.
 
 ---
 

@@ -18,6 +18,17 @@ Astro’s default approach:
 
 The result is fast pages, simpler hosting, and HTML that works even when JavaScript fails or is disabled.
 
+### What the browser actually downloads
+
+On a typical Constellation page, the visitor gets:
+
+- **HTML** — full article and layout, already rendered
+- **CSS** — global Tailwind, legacy Divi extract, optional per-page rules in `<head>`
+- **Images / fonts** — from `/images/`, `/fonts/` (static files)
+- **Little or no Astro-authored JS** — no framework runtime hydrating the whole page
+
+Third-party scripts (booking widget, YouTube, future GTM) are separate embeds, not Astro islands.
+
 ---
 
 ## What you write
@@ -85,6 +96,26 @@ Astro can use React-like patterns without shipping React to every page.
 | **Island** | A client-hydrated UI widget (React/Vue/etc.) with directives like `client:load` |
 | **SSG** | Static site generation—HTML built ahead of time |
 | **SSR** | Server-side rendering—HTML built per request |
+| **Vite** | Build tool Astro uses for dev server, bundling, and hot reload |
+| **Prerender** | Generate static HTML for a route at build time (default in static mode) |
+
+---
+
+## Request flow (static site)
+
+```mermaid
+sequenceDiagram
+  participant V as Visitor browser
+  participant CDN as Cloudflare CDN
+  participant F as dist/index.html
+
+  V->>CDN: GET /blog/my-post/
+  CDN->>F: Serve prebuilt HTML file
+  F-->>V: HTML + linked CSS + images
+  Note over V: No Node server runs per click
+```
+
+The `.astro` files you edit are **source code**. Visitors never download them—only the compiled HTML in `dist/`.
 
 ---
 

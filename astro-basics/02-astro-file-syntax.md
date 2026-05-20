@@ -84,6 +84,14 @@ You can:
 
 Attributes can be dynamic: `class={isActive ? 'active' : ''}`.
 
+### HTML in templates
+
+You can mix normal HTML comments, `<!-- like this -->`, with components. Astro does not re-parse arbitrary HTML inside slots as components—it outputs it as markup. That is why migrated WordPress HTML can live inside `<BlogPostTemplate>...</BlogPostTemplate>` unchanged.
+
+### Only one frontmatter block
+
+Each `.astro` file has exactly one `---` fence pair at the top. Put all imports and logic there, not in the template.
+
 ---
 
 ## `<style>` — component CSS
@@ -128,6 +136,22 @@ Scripts without a `type` attribute are **processed and bundled** by Astro. They 
 - Prefer zero client JS for content pages; use islands or vanilla script only when needed.
 
 Constellation’s site mostly avoids client scripts in favor of static HTML and vendor embeds (iframes, external widgets).
+
+### Script directives (when you do need client JS)
+
+| Directive | Behavior |
+|-----------|----------|
+| (default) | Bundled module, runs once when loaded |
+| `is:inline` | Copied into HTML verbatim; no bundling |
+| `define:vars={{ x }}` | Pass build-time values into the script |
+
+```astro
+<script is:inline>
+  /* Exact source appears in the page — good for tiny one-offs */
+</script>
+```
+
+Prefer a single small script per page over sprinkling many, so behavior stays easy to audit.
 
 ---
 
@@ -187,6 +211,8 @@ Build output: static file at `/hello/` (or `/hello.html` depending on trailing s
 | Forgetting `---` fences | Frontmatter must start and end with `---` on their own lines |
 | Import path wrong after moving file | Count `../` segments from current file to target |
 | Expecting frontmatter to run on every click | It runs at build time (static) or per request (SSR) |
+| Putting `<html>` in both page and `BaseLayout` | Only the root layout should own `<html>` and `<head>` |
+| Editing only in `dev` before a big PR | Run `npm run build && npm run preview` — production bundling can differ |
 
 ---
 

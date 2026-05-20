@@ -43,6 +43,28 @@ Reference in HTML or CSS with a **root-relative** path (leading slash):
 
 Paths are **not** rewritten at build time. What you write is what visitors request.
 
+### Image attributes worth setting
+
+```astro
+<img
+  src="/images/hero.webp"
+  alt="Law firm marketing team"
+  width="1200"
+  height="630"
+  loading="lazy"
+  decoding="async"
+/>
+```
+
+| Attribute | Why |
+|-----------|-----|
+| `alt` | Accessibility and SEO; required unless decorative |
+| `width` / `height` | Reduces layout shift (CLS) |
+| `loading="lazy"` | Defer off-screen images |
+| `fetchpriority="high"` | LCP hero only (sparingly) |
+
+Open Graph images (`og:image`) are usually absolute URLs in `BaseLayout` props, often pointing at `/images/constellation-og.jpg` or a page-specific asset in `public/`.
+
 ---
 
 ## Importing from `src/`
@@ -194,6 +216,22 @@ That coexists with Tailwind and component styles. Specificity and load order mat
 
 Constellation uses self-hosted Poppins under `public/fonts/` with preload in `BaseLayout`.
 
+```astro
+<link rel="preload" href="/fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin />
+```
+
+Preload only fonts actually used above the fold—each preload competes for bandwidth.
+
+### Tailwind inside Astro
+
+This repo loads Tailwind from `src/styles/global.css` imported in `BaseLayout`. Use utility classes in templates and slot HTML:
+
+```astro
+<section class="mx-auto max-w-4xl px-4 py-12">
+```
+
+Tailwind scans source files at build time; new classes in a page file are picked up on next `dev`/`build`. Legacy Divi CSS may override utilities where specificity is higher—see [STYLING.md](../STYLING.md).
+
 ---
 
 ## Third-party assets
@@ -247,6 +285,16 @@ Use this when an image or style works in `dev` but not after build.
 | `astro:assets` `<Image />` everywhere | Optional; mostly plain `<img>` |
 | Content Collections for images | Not used |
 | CMS media library | Content in Git + `public/` |
+
+### CSS load order on our site (why styles “lose”)
+
+Rough order in `<head>`:
+
+1. `global.css` (Tailwind + tokens) — imported via Astro
+2. `production-extracted.css` — linked from `public/`
+3. Per-page `<style slot="head">` overrides
+
+Later rules and more specific selectors win. If a Divi rule beats a Tailwind utility, fix in the right layer or increase specificity deliberately—not random `!important` chains.
 
 ---
 

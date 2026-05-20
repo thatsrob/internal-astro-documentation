@@ -96,6 +96,32 @@ When a layout needs **multiple regions** (e.g. main content + extra `<head>` sty
 
 Constellation’s `BaseLayout` uses a named `head` slot for per-page CSS overrides without duplicating the full document shell.
 
+### Fallback content inside a slot
+
+A layout can render defaults when the parent omits content:
+
+```astro
+<slot name="sidebar">
+  <aside>Default sidebar CTA</aside>
+</slot>
+```
+
+If the page provides `<div slot="sidebar">...</div>`, the default is replaced entirely.
+
+### Multiple children and one default slot
+
+Everything not tagged with `slot="..."` goes to the **default** slot, in order:
+
+```astro
+<BlogPostTemplate seoTitle="...">
+  <p>First paragraph</p>
+  <h2>Section</h2>
+  <p>More copy</p>
+</BlogPostTemplate>
+```
+
+All of that markup appears together at `<slot />` inside the template’s article region.
+
 ---
 
 ## Checking if a slot is used
@@ -171,6 +197,17 @@ See [TEMPLATES.md](../TEMPLATES.md) for each template’s props.
 | Same structure, different values | Same wrapper, different body |
 
 Blog posts on our site: `chapters={[...]}` as props; article HTML in the default slot.
+
+### Real stack on this repo (concrete)
+
+| Layer | File (example) | Responsibility |
+|-------|----------------|----------------|
+| Page | `src/pages/blog/law-firm-seo.astro` | `seoTitle`, `canonicalUrl`, `chapters`, article HTML in slot |
+| Template | `src/layouts/templates/BlogPostTemplate.astro` | Hero, sidebar TOC, `.article-body` wrapper |
+| Document | `src/layouts/BaseLayout.astro` | `<html>`, meta, OG tags, `global.css`, `head` slot |
+| Chrome | `SiteHeader.astro`, `SiteFooter.astro` | Nav and footer |
+
+Templates import `BaseLayout` and place header/footer around `<slot />`—pages never import `BaseLayout` directly on blog routes.
 
 ---
 

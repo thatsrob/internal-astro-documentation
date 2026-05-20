@@ -1,6 +1,8 @@
 # Astro basics (internal reference)
 
-A short, framework-focused guide to **Astro** for Constellation Marketing staff and contractors. These pages explain how Astro works as a tool—not how our WordPress migration repo is organized.
+A framework-focused guide to **Astro** for Constellation Marketing staff and contractors. These pages explain how Astro works as a tool—not how our WordPress migration repo is organized. Each chapter builds on the last; expect **10–15 minutes** per doc if you try the examples locally.
+
+**Stack on our site:** Astro 6, Node 22+, `output: 'static'`, Tailwind 4 via Vite. No React/Vue islands in production pages today.
 
 **Use this series when you need to:**
 
@@ -28,6 +30,40 @@ A short, framework-focused guide to **Astro** for Constellation Marketing staff 
 | 6 | [Build time vs runtime](./06-build-time-vs-runtime.md) | When code runs, static vs server output |
 | 7 | [Template expressions](./07-template-expressions.md) | `{expressions}`, conditionals, lists, `class` |
 | 8 | [Assets, images, and styles](./08-assets-images-and-styles.md) | `public/` vs `src/`, CSS patterns, images |
+
+---
+
+## Standard Astro project layout
+
+You will see this shape in the Constellation repo and in official starters:
+
+```
+project/
+├── astro.config.mjs    # site URL, output mode, redirects, integrations
+├── package.json        # astro, scripts (dev / build / preview)
+├── public/             # copied as-is → site root (/images, /fonts, robots.txt)
+└── src/
+    ├── components/     # reusable .astro (no URL by themselves)
+    ├── layouts/        # BaseLayout, templates
+    ├── pages/          # file-based routes only here
+    └── styles/         # global CSS (often imported from a layout)
+```
+
+Only files under `src/pages/` become browsable URLs. Everything else is imported into those pages.
+
+---
+
+## Quick troubleshooting
+
+| Problem | First check |
+|---------|-------------|
+| 404 on a path | File exists under `src/pages/` with expected name |
+| Blank or `undefined` in page | Prop name chain: page → template → `BaseLayout` |
+| Styles wrong after edit | Divi vs Tailwind vs `slot="head"` — [STYLING.md](../STYLING.md) |
+| Works in dev, broken live | `npm run build && npm run preview` |
+| Image 404 | File in `public/images/` and `src` starts with `/images/` |
+
+Full site-specific debug table: [ASTRO.md § Mental model for debugging](../ASTRO.md#mental-model-for-debugging).
 
 ---
 

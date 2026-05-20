@@ -49,6 +49,21 @@ export default defineConfig({
 
 CI and Cloudflare use **`build`**, not `dev`. Always verify important changes with `build` + `preview`.
 
+### Dev vs build vs preview
+
+| | `npm run dev` | `npm run build` | `npm run preview` |
+|--|---------------|-----------------|-------------------|
+| **Speed** | Fast HMR while editing | Slower; full site compile | Serves existing `dist/` |
+| **Output** | In memory / temp | Writes `dist/` | Reads `dist/` |
+| **Matches production** | Close | Yes | Yes |
+| **When to use** | Daily editing | Before PR / deploy | After build, catch prod-only bugs |
+
+Changing **only** `public/` files sometimes shows up in `dev` without a full rebuild; changing **imports**, Tailwind, or `astro.config.mjs` always warrants `build` + `preview`.
+
+### When you must rebuild
+
+Content and markup changes in `.astro` files require a new build to reach production. There is no “publish button” on a CMS—merge to `main` triggers CI, which runs `npm run build` and deploys `dist/`.
+
 ---
 
 ## Server output (SSR) — not used here
@@ -123,6 +138,18 @@ Ask: **“Did this code run at build time or in the browser?”**
 | Secrets without public prefix | Build-time frontmatter only (do not expose to client) |
 
 Never put API keys in client `<script>` or in HTML comments.
+
+In Astro, only variables prefixed with `PUBLIC_` are exposed to the browser via `import.meta.env.PUBLIC_*`. Everything else is build-time only. See [ENVIRONMENT-AND-SECRETS.md](../ENVIRONMENT-AND-SECRETS.md) for this repo.
+
+### `import.meta.env` (common flags)
+
+| Variable | Meaning |
+|----------|---------|
+| `import.meta.env.DEV` | `true` during `astro dev` |
+| `import.meta.env.PROD` | `true` during `astro build` |
+| `import.meta.env.BASE_URL` | Base path if site is hosted in a subdirectory |
+
+Rarely needed on our root-domain marketing site, but useful for conditional debug markup in templates.
 
 ---
 

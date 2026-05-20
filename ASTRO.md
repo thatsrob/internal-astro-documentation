@@ -22,6 +22,8 @@ At build time, Astro runs the frontmatter, renders components to HTML, and write
 
 Official docs: [docs.astro.build](https://docs.astro.build).
 
+**Deeper primer (8 chapters):** [astro-basics/README.md](./astro-basics/README.md) — project layout, props vs slots, build vs runtime, assets, and template directives with more examples than this summary.
+
 ---
 
 ## Astro basics (concepts you will see everywhere)
@@ -104,6 +106,9 @@ Inside frontmatter and templates you get helpers such as:
 |-----|---------------------------|
 | `Astro.props` | Props passed from parent component |
 | `Astro.url` | Current page URL (dev/build); used as default canonical fallback in `BaseLayout` |
+| `Astro.site` | Value of `site` from `astro.config.mjs` (origin for absolute URLs) |
+| `Astro.params` | Dynamic route segments from `[slug]` filenames |
+| `Astro.slots.has('name')` | Whether parent passed a named slot |
 
 ### Static output
 
@@ -130,6 +135,10 @@ These are valid Astro features but **not part of this codebase today**:
 
 The site is intentionally **HTML-first**, which matches a migrated marketing site with minimal interactivity beyond third-party embeds (booking calendar, ClickUp form, YouTube).
 
+### Content model here (not Content Collections)
+
+Many Astro tutorials store posts in `src/content/` as Markdown with typed schemas. **We do not.** Each blog or city URL is its own file under `src/pages/`, with HTML in the template slot. That matches a WordPress migration (one URL → one file) and keeps grep and PR diffs straightforward, at the cost of larger files.
+
 ---
 
 ## How Astro is configured here
@@ -155,6 +164,8 @@ export default defineConfig({
 | `site` | Base URL for Astro features that need an origin (e.g. future sitemap integration) |
 | `redirects` | Build-time redirects for renamed URLs (see [SEO.md](./SEO.md)) |
 | `vite.plugins` | Tailwind CSS 4 via `@tailwindcss/vite` |
+
+**`tsconfig.json`** extends Astro’s strict preset and includes `src/`. Path aliases are optional; most imports use relative paths like `../../layouts/templates/BlogPostTemplate.astro`.
 
 **Dependencies** (`package.json`): Astro 6, Tailwind 4. No UI framework packages. `@anthropic-ai/sdk` is for a dev script only, not the public site.
 

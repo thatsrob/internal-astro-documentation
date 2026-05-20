@@ -18,6 +18,8 @@ Print any JavaScript value:
 
 Values are escaped for HTML by default (safe against basic XSS from strings).
 
+`undefined` and `null` render as nothing—useful for optional fields. `0` renders as `0` (unlike React, where `0` can be tricky in `{count && ...}` patterns).
+
 ---
 
 ## Attributes
@@ -120,6 +122,32 @@ const links = [
 ```
 
 Prefer `class:list` when toggling multiple conditional classes.
+
+### Spreading attributes
+
+```astro
+---
+const linkProps = { href: '/book-call/', class: 'btn btn-primary' };
+---
+<a {...linkProps}>Book a call</a>
+```
+
+Works for any attribute object built in frontmatter.
+
+---
+
+## Astro template directives (quick reference)
+
+Beyond `{expressions}`, Astro adds **compiler directives** on tags:
+
+| Directive | Example | Purpose |
+|-----------|---------|---------|
+| `set:html` | `<div set:html={html} />` | Insert trusted HTML string |
+| `set:text` | `<p set:text={msg} />` | Insert plain text node |
+| `is:global` | `<style is:global>` | Unscoped CSS |
+| `define:vars` | `<style define:vars={{ c }}>` | CSS variables from JS |
+| `slot="head"` | `<style slot="head">` | Target named layout slot |
+| `client:*` | `<Widget client:visible />` | Hydrate framework component (not used here) |
 
 ---
 
@@ -230,6 +258,10 @@ const formatted = publishDate
 ```astro
 {description && <meta name="description" content={description} />}
 ```
+
+### Beware `{count && <Widget />}` when count can be 0
+
+If `count` is `0`, the expression renders `0` in the DOM. Prefer `count > 0 && ...` or a ternary.
 
 ---
 

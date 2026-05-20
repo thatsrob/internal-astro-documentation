@@ -19,7 +19,26 @@ Astro uses **file-based routing**: the folder structure under `src/pages/` defin
 - **`index.astro`** is the default file for a directory URL.
 - There is **no central routes config** for standard pages—the filesystem is the route table.
 
-Trailing slashes depend on `trailingSlash` in `astro.config.mjs`. Our site follows Astro defaults with directory-style URLs (`/about/`).
+Trailing slashes depend on `trailingSlash` in `astro.config.mjs`:
+
+| Setting | Example URL |
+|---------|----------------|
+| `'always'` (common default) | `/about/` |
+| `'never'` | `/about` |
+| `'ignore'` | Astro accepts both; host may normalize |
+
+Our site uses directory-style URLs (`/about/`). Internal links should match that style so you do not create duplicate URLs.
+
+### Non-`.astro` pages
+
+Astro also supports:
+
+| File | Notes |
+|------|-------|
+| `page.md` / `page.mdx` | Markdown routes (need MDX integration for `.mdx`) |
+| `page.html` | Raw HTML route |
+
+Constellation uses **`.astro` only** for production pages—HTML bodies live inside templates, not separate `.md` files.
 
 ---
 
@@ -64,6 +83,10 @@ const { slug } = Astro.params;
 `getStaticPaths()` tells Astro which URLs to build in **static** mode.
 
 **Constellation today:** most routes are **explicit files** (`law-firm-seo.astro`), not dynamic `[slug].astro`, because migration generated one file per WordPress URL. Dynamic routes are optional for future refactors.
+
+### Rest parameters (catch-all)
+
+`src/pages/docs/[...path].astro` matches `/docs/a`, `/docs/a/b`, etc. `Astro.params.path` is a string like `a/b`. Useful for nested doc trees; we do not use this pattern on the marketing site today.
 
 ---
 
@@ -147,6 +170,23 @@ When moving from WordPress, align:
 | **Canonical** | What should search engines index? |
 
 If file path ≠ production URL, you need a **redirect**, not only a canonical tag. See [ROUTING-REFERENCE.md](../ROUTING-REFERENCE.md).
+
+### Finding routes in the repo
+
+```bash
+# List all page files
+find src/pages -name '*.astro' | head
+
+# Resolve which file owns a URL fragment
+find src/pages -name '*law-firm-seo*'
+
+# See all canonicals pointing at production
+grep -r 'canonicalUrl=' src/pages --include='*.astro' | head
+```
+
+### `site` in config
+
+`astro.config.mjs` sets `site: 'https://www.goconstellation.com'` so Astro can build absolute URLs (sitemaps, RSS, some meta helpers). Page-level `canonicalUrl` props still override per-page SEO when you set them explicitly.
 
 ---
 
