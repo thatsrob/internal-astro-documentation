@@ -56,11 +56,15 @@ const posts = [
 
 Rules:
 
+- The opening `---` must be the **first thing** in the file (only a UTF-8 BOM before it, if any).
 - Runs **once per page** when Astro builds (or on each SSR request if configured).
 - Can use `import`, `await` (top-level in async setups), `fetch`, file reads, etc.
+- TypeScript works here when the project uses Astro’s TS setup (as in our repo).
 - Cannot access `window` or `document`—those exist only in the browser.
 
 Use frontmatter for: formatting dates, filtering lists, reading config, passing props to child components.
+
+> If you need `---` inside the visible page, put it in the template as text or an HTML comment—it is not frontmatter unless it is at the very top.
 
 ---
 
@@ -77,12 +81,13 @@ You can:
 - Import and use other `.astro` components (PascalCase tags).
 - Use standard HTML elements.
 - Nest components and pass attributes as props.
+- Use self-closing tags for components with no children: `<SiteHeader />`.
 
 ```astro
 <img src="/images/hero.webp" alt={heroAlt} loading="lazy" />
 ```
 
-Attributes can be dynamic: `class={isActive ? 'active' : ''}`.
+Attributes can be dynamic: `class={isActive ? 'active' : ''}`. Boolean attributes can use shorthand: `disabled` means `disabled={true}`.
 
 ### HTML in templates
 
@@ -200,6 +205,8 @@ import Greeting from '../components/Greeting.astro';
 ```
 
 Build output: static file at `/hello/` (or `/hello.html` depending on trailing slash config).
+
+On Constellation routes, the page file usually **does not** include `<html>`—it imports a template that wraps content in `BaseLayout`. The example above is minimal; see [04-slots-and-layouts.md](./04-slots-and-layouts.md).
 
 ---
 

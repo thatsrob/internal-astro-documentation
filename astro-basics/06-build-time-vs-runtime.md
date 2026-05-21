@@ -1,6 +1,6 @@
 # 6. Build time vs runtime
 
-Astro blurs the line between “build tool” and “framework” because the same `.astro` file runs code in **different environments** depending on which section you are in.
+Astro blurs the line between “build tool” and “framework” because the same `.astro` file runs code in **different environments** depending on which section you are in. See [02-astro-file-syntax.md](./02-astro-file-syntax.md) for what lives in frontmatter, template, `<style>`, and `<script>`.
 
 **Back to series:** [Astro basics index](./README.md) · **Previous:** [Routing and pages](./05-routing-and-pages.md)
 
@@ -39,6 +39,8 @@ export default defineConfig({
 | Frontmatter runs at build | Not on each visitor request |
 | `fetch` in frontmatter | Runs once during build |
 
+Each route becomes a folder under `dist/` with `index.html` (e.g. `dist/blog/my-post/index.html` for `/blog/my-post/`).
+
 **Commands:**
 
 | Command | Purpose |
@@ -58,7 +60,7 @@ CI and Cloudflare use **`build`**, not `dev`. Always verify important changes wi
 | **Matches production** | Close | Yes | Yes |
 | **When to use** | Daily editing | Before PR / deploy | After build, catch prod-only bugs |
 
-Changing **only** `public/` files sometimes shows up in `dev` without a full rebuild; changing **imports**, Tailwind, or `astro.config.mjs` always warrants `build` + `preview`.
+`npm run dev` uses **hot module replacement (HMR)** so many `.astro` edits refresh in the browser within seconds. Changing **only** `public/` files sometimes shows up in `dev` without a full rebuild; changing **imports**, Tailwind, or `astro.config.mjs` always warrants `build` + `preview`.
 
 ### When you must rebuild
 
@@ -139,7 +141,14 @@ Ask: **“Did this code run at build time or in the browser?”**
 
 Never put API keys in client `<script>` or in HTML comments.
 
-In Astro, only variables prefixed with `PUBLIC_` are exposed to the browser via `import.meta.env.PUBLIC_*`. Everything else is build-time only. For this repo: local `.env` and `ANTHROPIC_API_KEY` in [DEVELOPMENT.md](../DEVELOPMENT.md); deploy token and staging auth in [DEPLOYMENT.md](../DEPLOYMENT.md) and [INTEGRATIONS.md](../INTEGRATIONS.md).
+In Astro, only variables prefixed with `PUBLIC_` are exposed to the browser via `import.meta.env.PUBLIC_*`. Everything else is build-time only.
+
+```bash
+# .env (gitignored) — example; not required for normal dev
+ANTHROPIC_API_KEY=sk-ant-...
+```
+
+`ANTHROPIC_API_KEY` is **not** prefixed with `PUBLIC_`, so it never ships to visitors—only migration scripts read it. For this repo: local `.env` details in [DEVELOPMENT.md](../DEVELOPMENT.md); deploy token and staging basic auth in [DEPLOYMENT.md](../DEPLOYMENT.md) and [INTEGRATIONS.md](../INTEGRATIONS.md).
 
 ### `import.meta.env` (common flags)
 
